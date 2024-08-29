@@ -11,8 +11,11 @@ body {
 }
 
 .header {
-  text-align: center;
-  border-bottom: 1px solid grey;
+  text-align: left;
+}
+
+.header h1 {
+  margin-bottom: 1rem;
 }
 
 .header p {
