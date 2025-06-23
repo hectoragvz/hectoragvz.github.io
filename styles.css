@@ -30,18 +30,20 @@ ul.projects {
 
 .project-item {
   display: flex;
-  align-items: start;
+  align-items: stretch;
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
 .project-item img {
   width: 72px;
-  height: 72px;
+  min-height: 72px; /* default square */
+  aspect-ratio: 1 / 1; /* force it to stay square */
   object-fit: cover;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
   flex-shrink: 0;
+  align-self: stretch; /* allow to grow if needed */
 }
 
 .project-item div {
