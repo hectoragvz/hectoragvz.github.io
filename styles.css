@@ -5,20 +5,14 @@ body {
   display: block;
   font-size: 16px;
   font-family: system-ui, -apple-system, sans-serif;
-  font-weight: 400;
   line-height: 1.4;
 }
 
 #links {
   padding-left: 0%;
   display: flex;
-  gap: 16px;
+  gap: 8px;
   list-style: none;
-}
-
-.icon-list {
-  height: 16px;
-  width: 16px;
 }
 
 ul.projects {
@@ -27,42 +21,9 @@ ul.projects {
   margin: 0;
 }
 
-.project-item {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-
-.project-image {
-  flex-shrink: 0;
-}
-
-.project-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-  display: block;
-}
-
-.project-content {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.project-content h4 {
-  margin: 0 0 0.25rem;
-}
-
-.project-content p {
-  margin: 0;
+ul.projects li {
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 ul.publications {
