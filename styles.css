@@ -1,7 +1,5 @@
 body {
-    font-family:
-        system-ui,
-        -apple-system;
+    font-family: ui-sans-serif, system-ui, sans-serif;
     font-size: 16px;
     margin: 2em auto;
     max-width: 600px;
@@ -33,4 +31,14 @@ p {
 
 li {
     margin: 0 0 12px;
+}
+
+a,
+a:visited {
+    color: #155dfc; /* Replace with your preferred color */
+    text-decoration: none; /* Optional: removes the underline */
+}
+
+a:hover {
+    text-decoration: underline;
 }
