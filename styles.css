@@ -3,14 +3,12 @@ body {
     font-size: 16px;
     margin: 2em auto;
     max-width: 600px;
-    font-weight: 300;
     padding-top: 40px;
     line-height: 1.4;
     letter-spacing: 0.01em;
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
 h1,
 h2,
 h3,
@@ -23,22 +21,18 @@ h6 {
     margin: 0 0 0.6em;
     margin-bottom: 2px;
 }
-
 p {
     margin: 0 0 1.1em;
     letter-spacing: 0.01em;
 }
-
 li {
     margin: 0 0 12px;
 }
-
 a,
 a:visited {
     color: #155dfc; /* Replace with your preferred color */
     text-decoration: none; /* Optional: removes the underline */
 }
-
 a:hover {
     text-decoration: underline;
 }
