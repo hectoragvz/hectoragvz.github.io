@@ -1,0 +1,108 @@
+.project-page {
+    max-width: 880px;
+    padding-bottom: 5rem;
+    color: #102a2a;
+}
+
+.project-page nav {
+    margin-bottom: 4rem;
+}
+
+.project-page header {
+    max-width: 720px;
+    margin-bottom: 4rem;
+}
+
+.project-page h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.75rem, 10vw, 5.5rem);
+    letter-spacing: -0.055em;
+}
+
+.project-page h2 {
+    margin-top: 3.5rem;
+}
+
+.eyebrow {
+    margin-bottom: 0.75rem;
+    color: #087f7f;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.lede {
+    max-width: 660px;
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    line-height: 1.55;
+}
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.section-heading h2 {
+    margin: 0 0 1rem;
+}
+
+.section-heading p {
+    color: #526666;
+    font-size: 0.9rem;
+}
+
+.game-frame {
+    overflow: hidden;
+    border: 1px solid #183e3e;
+    border-radius: 0.75rem;
+    background: #061818;
+    box-shadow: 0 1.5rem 4rem rgb(6 24 24 / 14%);
+}
+
+.game-frame iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 5;
+    border: 0;
+}
+
+.caption {
+    margin-top: 0.75rem;
+    color: #526666;
+    font-size: 0.85rem;
+}
+
+.project-page article {
+    max-width: 680px;
+    margin-top: 5rem;
+}
+
+@media (max-width: 640px) {
+    .project-page {
+        margin-top: 1rem;
+        padding-top: 0;
+    }
+
+    .project-page nav {
+        margin-bottom: 3rem;
+    }
+
+    .project-page header {
+        margin-bottom: 3rem;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .game-frame {
+        margin-right: -1rem;
+        margin-left: -1rem;
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+    }
+}

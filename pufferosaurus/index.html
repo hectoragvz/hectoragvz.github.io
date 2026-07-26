@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Pufferosaurus: a reinforcement learning Dino agent running entirely in the browser."
+        />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Pufferosaurus — hectoragvz</title>
+    </head>
+
+    <body class="project-page">
+        <nav><a href="../">← hectoragvz.com</a></nav>
+
+        <main>
+            <header>
+                <p class="eyebrow">Reinforcement learning · WebAssembly</p>
+                <h1>Pufferosaurus</h1>
+                <p class="lede">
+                    A tiny recurrent policy learned to jump over cacti. The
+                    model, game simulation, and rendering all run locally in
+                    your browser—there is no inference server behind the demo.
+                </p>
+            </header>
+
+            <section aria-labelledby="demo-title">
+                <div class="section-heading">
+                    <h2 id="demo-title">Live demo</h2>
+                    <p>The agent plays autonomously and restarts on collision.</p>
+                </div>
+                <div class="game-frame">
+                    <iframe
+                        src="game/"
+                        title="Pufferosaurus autonomous Dino game"
+                        loading="eager"
+                        allow="fullscreen"
+                    ></iframe>
+                </div>
+                <p class="caption">
+                    Everything above is C compiled to WebAssembly, including
+                    the trained policy and its recurrent state.
+                </p>
+            </section>
+
+            <article>
+                <h2>What the agent sees</h2>
+                <p>
+                    Each frame is reduced to five numbers: the dinosaur’s
+                    normalized height and vertical velocity, the horizontal
+                    distance to the next obstacle, and that obstacle’s width
+                    and height. It never receives pixels or hand-authored timing
+                    rules.
+                </p>
+
+                <h2>What it can do</h2>
+                <p>
+                    The action space has only two choices: do nothing or jump.
+                    A small MinGRU policy carries state from one frame to the
+                    next, then selects one of those actions from the current
+                    observation and its memory.
+                </p>
+
+                <h2>How it learned</h2>
+                <p>
+                    Passing a cactus earns +1, colliding costs −1, and each jump
+                    costs −0.05. The jump penalty discourages frantic jumping
+                    without prescribing when a jump should happen. Training ran
+                    for 10 million environment steps with PufferLib; the browser
+                    loads the resulting checkpoint directly.
+                </p>
+
+                <h2>From training loop to game loop</h2>
+                <p>
+                    During training, thousands of environment copies advance as
+                    fast as possible. This showcase runs one copy at the
+                    browser’s animation rate. The same observations, actions,
+                    reward rules, physics, network dimensions, and binary
+                    checkpoint format are used in both places, so publishing the
+                    demo required no retraining.
+                </p>
+
+                <h2>Inside the browser</h2>
+                <p>
+                    Emscripten compiles the C environment, PufferNet inference,
+                    and raylib renderer into WebAssembly. The page isolates that
+                    runtime in a same-origin iframe. Textures and weights are
+                    preloaded into its virtual filesystem, and every animation
+                    frame performs inference, advances the simulation, and
+                    renders the result on the canvas.
+                </p>
+
+                <h2>Limits and next steps</h2>
+                <p>
+                    This first version intentionally keeps the trained task
+                    fixed: one obstacle type, one speed, autonomous playback,
+                    and a roughly 2.7 MB generic resource bundle. Future
+                    iterations may let visitors inject obstacles or change the
+                    playback speed, followed by tighter asset packaging.
+                </p>
+            </article>
+        </main>
+    </body>
+</html>
