@@ -50,3 +50,21 @@ a:hover {
 #latest {
     font-weight: 600;
 }
+
+.daily-log {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid #ddd;
+}
+
+.daily-log h3 {
+    margin-top: 0;
+}
+
+.log-entry + .log-entry {
+    margin-top: 2em;
+}
+
+.log-date {
+    margin-bottom: 0.5em;
+}
