@@ -137,6 +137,16 @@
           <h3 id="daily-log-title">Notes</h3>
 
           <div class="log-entry">
+            <p class="log-date"><strong>August 3, 2026</strong></p>
+            <p>
+              Currently working to make the "increase by 2x speed" button work here in the browser.
+              The first six-observation candidate runs, but its 1× speed performance is just bad. 
+              Across 100 normal-speed episodes it averaged 2.34 passes and 377 steps, crashed before the first
+              obstacle 28 times, and never reached the 2,000-step limit. The 5-observation policy (which only had 1x speed training)
+              averaged 17 passes and reached the limit in all 100 episodes, such an obvious difference.
+            </p>
+
+          <div class="log-entry">
             <p class="log-date"><strong>June 29, 2026</strong></p>
             <p>
               I really like
@@ -147,7 +157,6 @@
               content explaining the project will be kept at the top of the page
               for an easy access to it.
             </p>
-
             <p>
               Revisiting Andrej Karpathy's policy gradients before even thinking
               about messing with PPO and some other papers.
