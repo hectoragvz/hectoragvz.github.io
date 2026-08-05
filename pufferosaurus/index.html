@@ -37,10 +37,12 @@
 
       <article>
         <p>
-          I sectioned each frame is to five numbers, called observations: the
+          I reduce each frame to six numbers, called observations: the
           dinosaur’s normalized height and vertical velocity, the horizontal
-          distance to the next obstacle, and that obstacle’s width and height.
-          It never receives pixels or any timing rules.
+          distance to the next obstacle, that obstacle’s width and height, and
+          the current speed. It never receives pixels or any timing rules. Each
+          episode starts at 1× and accelerates permanently to 2× after seven
+          obstacle passes.
         </p>
 
         <p>
@@ -115,9 +117,9 @@
 
         <h3>Next</h3>
         <p>
-          This first version intentionally keeps the trained task fixed: one
-          obstacle type, one speed, autonomous playback, and a 2.7 MB generic
-          resource bundle.
+          This version intentionally keeps the trained task focused: one
+          obstacle type, automatic 1×-to-2× progression, autonomous playback,
+          and a 2.7 MB generic resource bundle.
         </p>
         <p>
           I intend next iterations to let visitors "throw" obstacles or change
