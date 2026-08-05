@@ -139,6 +139,22 @@
           <h3 id="daily-log-title">Notes</h3>
 
           <div class="log-entry">
+            <p class="log-date"><strong>August 4, 2026</strong></p>
+            <p>
+              After testing the 2× speed toggle approach, I realized it was not
+              working well at all: it seemed that learning stopped and neither 
+              1x spped and 2x speed returned successful results at random speed changes. 
+              I ended up going with a simpler progression instead: every episode begins 
+              at 1×, then the game automatically and permanently switches to 2× after 
+              the dinosaur passes seven obstacles (which is honestly what the real Chrome game 
+              implements). The policy was trained and tested for this exact transition, 
+              and it is now running here on the site. I prioritized working on other parts of
+              the project I still want to include, and now think of adding a label for each new 
+              "difficulty" that is added live to the game (currently score and speed only).
+            </p>
+          </div>
+
+          <div class="log-entry">
             <p class="log-date"><strong>August 3, 2026</strong></p>
             <p>
               Currently working to make the "increase by 2x speed" button work here in the browser.
