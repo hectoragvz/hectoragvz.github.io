@@ -61,6 +61,26 @@
     margin-top: 2em;
 }
 
+.training-results {
+    overflow-x: auto;
+}
+
+.training-results table {
+    border-collapse: collapse;
+    min-width: 42rem;
+}
+
+.training-results th,
+.training-results td {
+    padding: 0.35em 0.55em;
+    border: 1px solid currentColor;
+    text-align: right;
+}
+
+.training-results th:first-child {
+    text-align: left;
+}
+
 @media (max-width: 480px) {
     .reference-videos {
         grid-template-columns: 1fr;
