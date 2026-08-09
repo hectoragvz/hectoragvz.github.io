@@ -41,10 +41,9 @@
           associated penalties. Ducking when not needed was also penalized as the dinosaur 
           learned that a ducking hitbox is ultimataely smaller and more optimal as it collides less often -obviously, 
           but I did not want the dinosaur to be in that position all the time (boring).
-          The jump penalty discourages repeated jumping without prescribing when a jump should happen 
-          (this separated the demo you see from just a dinosaur which always stood still or jumped all
-          the time - refer to previous versions 👇). I also attach every significant demos which translate into the major changes 
-          the environment went throough up until the latest one which is running live above.
+          The jump penalty discourages repeated jumping without prescribing when a jump should happen; 
+          this separated the demo from just a dinosaur which always stood still or jumped all
+          the time. I attach some of my dev notes for this project below.
         </p>
         <p>
           Training ran for 10 million environment steps with
@@ -60,124 +59,6 @@
 
         <section class="daily-log" aria-labelledby="daily-log-title">
 
-          <p>Here are the latest versions of the environment. I can mostly say that retraining on specific scenarios to boost 
-            either meteor or cacti performance was ultimately what performed the best. Note: penalizing ducking as mentioned above did the trick 
-            to avoid the dino to always choose a more narrow hitbox and just duck all the time (excpet for when jumping was really needed).
-          </p>
-
-          <section class="earlier-versions" aria-label="Earlier versions">
-          <ul class="reference-videos">
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="videos/version-1.mp4" type="video/mp4" />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="videos/version-2.mp4" type="video/mp4" />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="videos/version-3.mp4" type="video/mp4" />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="videos/version-4.mp4" type="video/mp4" />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source
-                  src="videos/2026-08-04%2022-55-36.mov"
-                  type="video/quicktime"
-                />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source
-                  src="videos/2026-08-06%2023-48-40.mov"
-                  type="video/quicktime"
-                />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source
-                  src="videos/2026-08-08%2015-11-55.mov"
-                  type="video/quicktime"
-                />
-              </video>
-            </li>
-            <li>
-              <video
-                autoplay
-                controls
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source
-                  src="videos/2026-08-08%2015-37-39.mov"
-                  type="video/quicktime"
-                />
-              </video>
-            </li>
-          </ul>
-        </section>
-
           <h3 id="daily-log-title">Notes</h3>
 
           <div class="log-entry">
@@ -185,13 +66,13 @@
             <p>
               Today I turned the Dino evaluation into a fixed 100-seed test
               suite. The policy now has to survive the full 2,000-step limit
-              at 1×, 2×, speed transitions, and the seven-pass curriculum.
+              at 1x and 2× speed transitions, and the seven-pass curriculum.
               It also has to handle low jump-only meteors, flexible meteors,
               and high duck-only meteors without jumping from the ground.
             </p>
             <p>
               The first 100M-step candidate learned the duck decision, but it
-              was still brittle at fixed 1×. I then tested two ways of mixing
+              was still only at fixed 1×. I then tested two ways of mixing
               fixed-1× episodes with the original seven-pass 1×-to-2×
               curriculum:
             </p>
@@ -205,7 +86,7 @@
                     <th scope="col">Up</th>
                     <th scope="col">Down</th>
                     <th scope="col">Multi</th>
-                    <th scope="col">Curriculum</th>
+                  <th scope="col">Curric.</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -257,7 +138,7 @@
               2× behavior. The 25/75 run restored 2× and transition behavior
               while keeping a smaller fixed-1× gain. The remaining failures
               are mostly low, jump-only meteors at fixed 1×, while duck-only
-              meteor behavior remains correct.
+              meteor behavior is still correct.
             </p>
             <p>
               A targeted fixed-1× curriculum kept the 25/75 mix, used a 50%
@@ -276,13 +157,14 @@
               were no first-obstacle crashes, every completed meteor-band
               encounter passed, and the Dino made no ground-level jumps for
               duck-only meteors. That makes this the first checkpoint ready
-              for promotion to the browser demo.
+              for making it to the browser demo. These are some of the testing 
+              points I focused the demos on.
             </p>
             <p>
-              The new video test also makes a useful policy choice obvious:
-              the Dino ducks almost constantly when it is not jumping. This
-              is not a visual bug. Ducking reduces the ground-level hitbox,
-              and the current reward gives it no cost, so a recurrent policy
+              The newest demo test also makes a useful policy choice obvious:
+              the Dino ducks almost constantly when it is not jumping. 
+              Ducking reduces the ground-level hitbox, and the current reward gives 
+              it no cost, so a recurrent policy
               can safely treat ducking as its default posture. The next
               isolated experiment will add a very small per-frame ground-duck
               penalty. A needless long duck should then become expensive,

@@ -36,53 +36,37 @@
     font-size: 0.875em;
 }
 
-.earlier-versions {
-    margin-top: 2em;
-}
-
-.reference-videos {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1em;
-    padding-left: 0;
-    list-style: none;
-}
-
-.reference-videos li {
-    margin: 0;
-}
-
-.reference-videos video {
-    display: block;
-    width: 100%;
-}
-
 .project-page article {
     margin-top: 2em;
 }
 
 .training-results {
-    overflow-x: auto;
+    box-sizing: border-box;
+    max-width: 100%;
+    border: 1px solid #ddd;
 }
 
 .training-results table {
+    width: 100%;
     border-collapse: collapse;
-    min-width: 42rem;
+    table-layout: fixed;
+    font-size: 0.8125em;
 }
 
 .training-results th,
 .training-results td {
     padding: 0.35em 0.55em;
     border: 1px solid currentColor;
-    text-align: right;
-}
-
-.training-results th:first-child {
-    text-align: left;
+    text-align: center;
 }
 
 @media (max-width: 480px) {
-    .reference-videos {
-        grid-template-columns: 1fr;
+    .training-results table {
+        font-size: 0.65em;
+    }
+
+    .training-results th,
+    .training-results td {
+        padding: 0.25em 0.2em;
     }
 }
