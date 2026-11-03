@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+    />
     <meta name="description" content="Pufferosaurus" />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -15,12 +21,18 @@
         <h2>Pufferosaurus</h2>
         <p class="back-home"><a href="../">(back home)</a></p>
         <p class="lede">
-          A tiny recurrent policy learned to avoid cacti and meteors. The model, game
-          simulation, and rendering all run locally in the browser.
+          A tiny recurrent policy learned to avoid cacti and meteors. The model,
+          game simulation, and rendering all run locally in the browser, see the
+          code
+          <a
+            href="https://github.com/hectoragvz/puffer-envs/tree/main/envs/dino"
+            target="_blank"
+            >here</a
+          >.
         </p>
       </header>
 
-      <section aria-labelledby="demo-title">
+      <section aria-label="Demo">
         <div class="game-frame">
           <iframe
             src="game/"
@@ -37,13 +49,15 @@
 
       <article>
         <p>
-          Passing a cactus and a meteor earns a reward, and both jumping and colliding have
-          associated penalties. Ducking when not needed was also penalized as the dinosaur 
-          learned that a ducking hitbox is ultimataely smaller and more optimal as it collides less often -obviously, 
-          but I did not want the dinosaur to be in that position all the time (boring).
-          The jump penalty discourages repeated jumping without prescribing when a jump should happen; 
-          this separated the demo from just a dinosaur which always stood still or jumped all
-          the time. I attach some of my dev notes for this project below.
+          Passing a cactus and a meteor earns a reward, and both jumping and
+          colliding have associated penalties. Ducking when not needed was also
+          penalized as the dinosaur learned that a ducking hitbox is ultimataely
+          smaller and more optimal as it collides less often -obviously, but I
+          did not want the dinosaur to be in that position all the time
+          (boring). The jump penalty discourages repeated jumping without
+          prescribing when a jump should happen; this separated the demo from
+          just a dinosaur which always stood still or jumped all the time. I
+          attach some of my dev notes for this project below.
         </p>
         <p>
           Training ran for 10 million environment steps with
@@ -58,17 +72,16 @@
         </p>
 
         <section class="daily-log" aria-labelledby="daily-log-title">
-
           <h3 id="daily-log-title">Notes</h3>
 
           <div class="log-entry">
             <p class="log-date"><strong>August 8, 2026</strong></p>
             <p>
               Today I turned the Dino evaluation into a fixed 100-seed test
-              suite. The policy now has to survive the full 2,000-step limit
-              at 1x and 2× speed transitions, and the seven-pass curriculum.
-              It also has to handle low jump-only meteors, flexible meteors,
-              and high duck-only meteors without jumping from the ground.
+              suite. The policy now has to survive the full 2,000-step limit at
+              1x and 2× speed transitions, and the seven-pass curriculum. It
+              also has to handle low jump-only meteors, flexible meteors, and
+              high duck-only meteors without jumping from the ground.
             </p>
             <p>
               The first 100M-step candidate learned the duck decision, but it
@@ -86,7 +99,7 @@
                     <th scope="col">Up</th>
                     <th scope="col">Down</th>
                     <th scope="col">Multi</th>
-                  <th scope="col">Curric.</th>
+                    <th scope="col">Curric.</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -134,67 +147,73 @@
               better; a candidate qualifies only at 100 in every suite.
             </p>
             <p>
-              The 50/50 run improved fixed 1× but cost the policy its strong
-              2× behavior. The 25/75 run restored 2× and transition behavior
-              while keeping a smaller fixed-1× gain. The remaining failures
-              are mostly low, jump-only meteors at fixed 1×, while duck-only
-              meteor behavior is still correct.
+              The 50/50 run improved fixed 1× but cost the policy its strong 2×
+              behavior. The 25/75 run restored 2× and transition behavior while
+              keeping a smaller fixed-1× gain. The remaining failures are mostly
+              low, jump-only meteors at fixed 1×, while duck-only meteor
+              behavior is still correct.
             </p>
             <p>
               A targeted fixed-1× curriculum kept the 25/75 mix, used a 50%
-              meteor rate throughout fixed-1× episodes, and sampled 75% of
-              those meteors from the jump-only height band. It matched the
-              best fixed-1× result while restoring perfect 2× and upward
-              transition results. It is the best candidate so far and now
-              qualifies across every fixed suite. The final evaluator change
-              excludes a meteor first encountered near the 2,000-step limit
-              when the episode ends before it can be passed, rather than
-              marking an otherwise successful episode as a meteor failure.
+              meteor rate throughout fixed-1× episodes, and sampled 75% of those
+              meteors from the jump-only height band. It matched the best
+              fixed-1× result while restoring perfect 2× and upward transition
+              results. It is the best candidate so far and now qualifies across
+              every fixed suite. The final evaluator change excludes a meteor
+              first encountered near the 2,000-step limit when the episode ends
+              before it can be passed, rather than marking an otherwise
+              successful episode as a meteor failure.
             </p>
             <p>
-              The final evaluation passed all six suites. Every one of the
-              700 fixed-seed episodes reached the 2,000-step limit, there
-              were no first-obstacle crashes, every completed meteor-band
-              encounter passed, and the Dino made no ground-level jumps for
-              duck-only meteors. That makes this the first checkpoint ready
-              for making it to the browser demo. These are some of the testing 
-              points I focused the demos on.
+              The final evaluation passed all six suites. Every one of the 700
+              fixed-seed episodes reached the 2,000-step limit, there were no
+              first-obstacle crashes, every completed meteor-band encounter
+              passed, and the Dino made no ground-level jumps for duck-only
+              meteors. That makes this the first checkpoint ready for making it
+              to the browser demo. These are some of the testing points I
+              focused the demos on.
             </p>
             <p>
               The newest demo test also makes a useful policy choice obvious:
-              the Dino ducks almost constantly when it is not jumping. 
-              Ducking reduces the ground-level hitbox, and the current reward gives 
-              it no cost, so a recurrent policy
-              can safely treat ducking as its default posture. The next
-              isolated experiment will add a very small per-frame ground-duck
-              penalty. A needless long duck should then become expensive,
-              while a short duck beneath a high meteor remains much cheaper
-              than a collision. The fixed evaluator will stay unchanged to
-              verify that the Dino still ducks correctly when it must.
+              the Dino ducks almost constantly when it is not jumping. Ducking
+              reduces the ground-level hitbox, and the current reward gives it
+              no cost, so a recurrent policy can safely treat ducking as its
+              default posture. The next isolated experiment will add a very
+              small per-frame ground-duck penalty. A needless long duck should
+              then become expensive, while a short duck beneath a high meteor
+              remains much cheaper than a collision. The fixed evaluator will
+              stay unchanged to verify that the Dino still ducks correctly when
+              it must.
             </p>
           </div>
 
           <div class="log-entry">
             <p class="log-date"><strong>August 7-8, 2026</strong></p>
             <p>
-              So I've been trying to jump the jumps the dino does the moment a meteor appears but it is avoided jumping
-              still. So far, penalty and trainig time changes have been effective since this is simple environment and 
-              the physics are not that hard. I plan to have this version ready and move into something more physical after that. 
-              In the end, I think building Puffer envs is really the best way to learn about how to make simple but effective environments and the 
-              learning is just unmatched. Still need to read a few papers here and then and reflect back on the concepts with this game. Pendulums will be 
-              fun IRL.
+              So I've been trying to jump the jumps the dino does the moment a
+              meteor appears but it is avoided jumping still. So far, penalty
+              and trainig time changes have been effective since this is simple
+              environment and the physics are not that hard. I plan to have this
+              version ready and move into something more physical after that. In
+              the end, I think building Puffer envs is really the best way to
+              learn about how to make simple but effective environments and the
+              learning is just unmatched. Still need to read a few papers here
+              and then and reflect back on the concepts with this game.
+              Pendulums will be fun IRL.
             </p>
           </div>
 
           <div class="log-entry">
             <p class="log-date"><strong>August 6, 2026</strong></p>
             <p>
-              I added another observation to reflect the a new type of obstancle for the dino: 
-              meteors. The implementation and training was smooth. However, this new env 
-              makes the dinosaur duck for a moment then jumps over the meteor either way. I assume 
-              I need to increase height on this new type of obstacle. Fortunately, assets for the 
-              new duck position and the meteor worked fine and it is always good just to see the new 
-              version's UI working fine. I plan to add these new versions just as a sample in the next days.
+              I added another observation to reflect the a new type of obstancle
+              for the dino: meteors. The implementation and training was smooth.
+              However, this new env makes the dinosaur duck for a moment then
+              jumps over the meteor either way. I assume I need to increase
+              height on this new type of obstacle. Fortunately, assets for the
+              new duck position and the meteor worked fine and it is always good
+              just to see the new version's UI working fine. I plan to add these
+              new versions just as a sample in the next days.
             </p>
           </div>
 
@@ -202,27 +221,33 @@
             <p class="log-date"><strong>August 4, 2026</strong></p>
             <p>
               After testing the 2× speed toggle approach, I realized it was not
-              working well at all: it seemed that learning stopped and neither 
-              1x spped and 2x speed returned successful results at random speed changes. 
-              I ended up going with a simpler progression instead: every episode begins 
-              at 1×, then the game automatically and permanently switches to 2× after 
-              the dinosaur passes seven obstacles (which is honestly what the real Chrome game 
-              implements). The policy was trained and tested for this exact transition, 
-              and it is now running here on the site. I prioritized working on other parts of
-              the project I still want to include, and now think of adding a label for each new 
-              "difficulty" that is added live to the game (currently score and speed only).
+              working well at all: it seemed that learning stopped and neither
+              1x spped and 2x speed returned successful results at random speed
+              changes. I ended up going with a simpler progression instead:
+              every episode begins at 1×, then the game automatically and
+              permanently switches to 2× after the dinosaur passes seven
+              obstacles (which is honestly what the real Chrome game
+              implements). The policy was trained and tested for this exact
+              transition, and it is now running here on the site. I prioritized
+              working on other parts of the project I still want to include, and
+              now think of adding a label for each new "difficulty" that is
+              added live to the game (currently score and speed only).
             </p>
           </div>
 
           <div class="log-entry">
             <p class="log-date"><strong>August 3, 2026</strong></p>
             <p>
-              Currently working to make the "increase by 2x speed" button work here in the browser.
-              The first six-observation candidate runs, but its 1× speed performance is just bad. 
-              Across 100 normal-speed episodes it averaged 2.34 passes and 377 steps, crashed before the first
-              obstacle 28 times, and never reached the 2,000-step limit. The 5-observation policy (which only had 1x speed training)
-              averaged 17 passes and reached the limit in all 100 episodes, such an obvious difference.
+              Currently working to make the "increase by 2x speed" button work
+              here in the browser. The first six-observation candidate runs, but
+              its 1× speed performance is just bad. Across 100 normal-speed
+              episodes it averaged 2.34 passes and 377 steps, crashed before the
+              first obstacle 28 times, and never reached the 2,000-step limit.
+              The 5-observation policy (which only had 1x speed training)
+              averaged 17 passes and reached the limit in all 100 episodes, such
+              an obvious difference.
             </p>
+          </div>
 
           <div class="log-entry">
             <p class="log-date"><strong>June 29, 2026</strong></p>

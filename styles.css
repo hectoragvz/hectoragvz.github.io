@@ -1,13 +1,13 @@
 body {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 16px;
-    margin: 2em auto;
-    max-width: 600px;
-    padding-top: 40px;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  margin: 2em auto;
+  max-width: 600px;
+  padding-top: 40px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 h1,
 h2,
@@ -15,56 +15,61 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin: 3em 0 1em;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 3em 0 1em;
 }
 body > h2:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 h3 {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 p {
-    margin: 0 0 1em;
-    letter-spacing: 0.01em;
+  margin: 0 0 1em;
+  letter-spacing: 0.01em;
 }
 ul {
-    list-style-position: outside;
-    padding-left: 1.2em;
-    margin: 0 0 1em;
+  list-style-position: outside;
+  padding-left: 1.2em;
+  margin: 0 0 1em;
 }
 li {
-    margin: 0 0 0.5em;
+  margin: 0 0 0.5em;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 a,
 a:visited {
-    color: #155dfc; /* Replace with your preferred color */
-    text-decoration: none; /* Optional: removes the underline */
+  color: #155dfc; /* Replace with your preferred color */
+  text-decoration: none; /* Optional: removes the underline */
 }
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-#latest {
-    font-weight: 600;
+.reading-note {
+  font-weight: 600;
 }
 
 .daily-log {
-    margin-top: 3em;
-    padding-top: 2em;
-    border-top: 1px solid #ddd;
+  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid #ddd;
 }
 
 .daily-log h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .log-entry + .log-entry {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .log-date {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }

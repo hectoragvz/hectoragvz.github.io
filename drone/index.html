@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+    />
     <meta name="description" content="Drone project" />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -14,17 +20,245 @@
       <header>
         <h2>Custom Drone</h2>
         <p class="back-home"><a href="../">(back home)</a></p>
-        <p>I aim to write about my drone project here (soon).</p>
+        <p class="lede">
+          A drone project I put together from scratch, from assembling to
+          flying.
+        </p>
       </header>
 
-      <img
-        class="project-photo"
-        src="photos/drone-proof.jpeg"
-        alt="A custom-built drone resting on the back of a vehicle"
-        width="960"
-        height="1280"
-      />
-      <p class="caption">It worked!</p>
+      <section aria-label="Finished drone">
+        <img
+          class="project-photo"
+          src="photos/drone-proof.jpeg"
+          alt="A custom-built drone resting on the back of a vehicle"
+          width="960"
+          height="1280"
+        />
+        <p class="caption">It worked!</p>
+      </section>
+
+      <article>
+        <p>
+          I once had the idea of getting into drones, so I tried to build my
+          own. I searched for some inspo on YouTube and
+          <a href="https://www.youtube.com/watch?v=uC9hVyqGvDE" target="_blank"
+            >this video</a
+          >
+          helped go through the initial steps on what to buy and what to expect
+          from the process. I aimed to buy the most similar parts to what he
+          mentions. The flight controller was perhaps the most important piece
+          that differs from the video, as with the receiver, the GPS module, the
+          batteries and their charger.
+        </p>
+        <p>
+          <span class="reading-note">Reading Note: </span>This project was
+          assembled before I could decide on my notes system so this is the only
+          page with a chronological sequence from top to bottom (and not vice
+          versa).
+        </p>
+
+        <section class="daily-log" aria-labelledby="build-notes-title">
+          <h3 id="build-notes-title">Build Notes</h3>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Frame and motors</strong></p>
+            <p>
+              Assembling the frame was straightforward. The motors however,
+              ended up being a bit of a hassle. I assembled all 4 motors and
+              they were working as the servo tester proved. Up until connecting
+              the drone to my laptop I realized there was a failure in one of
+              the ESCs that I could not prove to be around any of the
+              connections with the flight controller or the motors themselves.
+              So I stripped the remaining 2 ESCs off their wires, completed the
+              connection with some spare wire I had, and manually soldered them
+              to the controller - to this day, my only theory suggests a faulty
+              wire coming from one of the ends of both controllers.
+            </p>
+            <figure>
+              <img
+                class="project-photo"
+                src="photos/Frame1.JPG"
+                alt="A drone frame"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+              <figcaption class="caption">The bare frame.</figcaption>
+            </figure>
+            <p>
+              I soldered the connection from the ESCs to the board of the frame
+              and stripped the middle wire coming from their LEDs since my
+              controller is a Pixhawk and only accepts 2 ends. You can see where
+              this takes me: my controller accepts 2 wires coming in my ESC LED
+              but I need those 3 to test if the connection even works.
+            </p>
+            <figure>
+              <img
+                class="project-photo"
+                src="photos/FrameConnectors1.JPG"
+                alt="A drone frame with the ESCs connected"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+              <figcaption class="caption">
+                ESCs soldered to the frame board.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Flight controller</strong></p>
+            <p>
+              Assembling the
+              <a
+                href="https://docs.px4.io/main/en/flight_controller/pixhawk6c_mini"
+                target="_blank"
+                >Pixhawk 6c Mini Flight Controller</a
+              >
+              worked out. I had to do some research around to know where the
+              components were supposed to be connected but in the end, managed
+              to get the 4 motors to work on it, after the problems with the ESC
+              signal wires.
+            </p>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Receiver</strong></p>
+            <p>
+              I soldered around my ELRS receiver after some research indicated
+              me the order of the wires the flight controller needed and turned
+              out to be a precise soldering work I did after practicing for a
+              bit.
+            </p>
+            <figure>
+              <img
+                class="project-photo"
+                src="photos/Receiver2.JPG"
+                alt="A custom-built receiver"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+              <figcaption class="caption">
+                The soldered ELRS receiver.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Batteries</strong></p>
+            <p>
+              After getting my batteries, I also needed to manufacture a charger
+              for the battery charger. I hacked around a Dell charger to make it
+              work with my ISDT Retro charger. I couldn't find the video which
+              guided me through the process but it ended up being simple: you
+              can just cut off the end of any basic Dell charger that plugs to
+              your pc, cut the blue cable, and connect the other two to a XT60
+              end that will then plug to your battery charger; make sure to
+              check the polarity before soldering to the connector and the
+              voltage after to see if everything still works.
+            </p>
+            <figure>
+              <img
+                class="project-photo"
+                src="photos/Multi1.JPG"
+                alt="Testing the XT60 end of the modified Dell charger with a multimeter"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+              <figcaption class="caption">
+                Checking the finished XT60 end with a multimeter.
+              </figcaption>
+            </figure>
+            <p>
+              <span class="reading-note">Please</span> watch some documentation
+              or see tutorials on how to store, and manage LiPo batteries.
+            </p>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Other modules</strong></p>
+            <p>
+              Connecting both the compass and the GPS module to the Pixhawk
+              comes in very easy as they are designed to be compatible. You will
+              need to make sure to "design" some sort of a stand for your GPS
+              module and take some time to really organize how you will handle
+              cable management along the drone.
+            </p>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>On software...</strong></p>
+            <p>
+              I researched about flight software and Clauded for a while until I
+              opted to make it work in QGroundControl. I will praise their
+              interface but not the lack of videos around complete setup guides.
+              You can translate most of the setup from ArduPilot and Claude is
+              also up to date with what are the recommendations for setting up a
+              project in it. Once again, my setup was mostly slow because of the
+              problems between my ESCs and the Pixhawk. So I would go to do some
+              test flights or prepare everything for making the propellers spin
+              and the motors wouldn't spin for no apparent reason.
+            </p>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Flying</strong></p>
+            <p>
+              My drone ended up looking like this and flying as it is supposed
+              to do. Although I will confess my flying skills are considerably
+              lower than my fear of crashing $600 USD (I had no hardware or
+              electronics equipment before this project) with not sufficient
+              repairs if it ends up in the ground in less than a minute. So I
+              have been conservative with the flight tests for now.
+            </p>
+            <figure>
+              <div class="photo-pair">
+                <img
+                  class="project-photo"
+                  src="photos/DroneOnGrass1.JPG"
+                  alt="A custom-built drone resting on the grass"
+                  width="900"
+                  height="1200"
+                  loading="lazy"
+                />
+                <img
+                  class="project-photo"
+                  src="photos/DroneOnTruck1.JPG"
+                  alt="A custom-built drone resting on the back of a truck"
+                  width="900"
+                  height="1200"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="caption">The finished build.</figcaption>
+            </figure>
+          </div>
+
+          <div class="log-entry">
+            <p class="log-date"><strong>Takeaways</strong></p>
+            <p>
+              As a general takeaway, I can assure waiting for electronics and
+              overall parts is the biggest bottleneck of the process. If you are
+              planning to build something like this, consider buying everything
+              at once to avoid delays, and plan what you will do while you wait.
+            </p>
+            <p>
+              I do plan to return to this project since I want to add some
+              autonomy to it. I am currently focused on making my robotics base
+              stronger in the meantime but I will confess it is a rewarding
+              experience to see it flying - and almost crashing due to my
+              evident flying skill issue.
+            </p>
+            <p class="caption">
+              P.S. This was an oversimplification of the whole journey but
+              detailed, daily logs will come in future projects.
+            </p>
+          </div>
+        </section>
+      </article>
     </main>
   </body>
 </html>

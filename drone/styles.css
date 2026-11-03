@@ -7,13 +7,37 @@
     font-size: 0.875em;
 }
 
+.project-page header {
+    margin-bottom: 2em;
+}
+
+.project-page article {
+    margin-top: 2em;
+}
+
 .project-photo {
     display: block;
     width: 100%;
     height: auto;
 }
 
+.project-page figure {
+    margin: 1.5em 0;
+}
+
+.photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+}
+
 .caption {
     margin-top: 0.5em;
     font-size: 0.875em;
+}
+
+@media (max-width: 480px) {
+    .photo-pair {
+        grid-template-columns: 1fr;
+    }
 }
